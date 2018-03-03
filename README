@@ -1,0 +1,109 @@
+EnigmaC++ (c)Jim Booth 2018
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An enigma machine emulator that takes a single command line parameter that comprised the machine settings + ciphertext
+and which outputs the corresponding decoded plaintext.
+
+There is limited command line argument validation checking so please pay attention this README file.
+
+Command Line Parameter
+~~~~~~~~~~~~~~~~~~~~~~
+
+The machine settings are delimited from the ciphertext by the '$'(dollar) symbol
+
+<---machine_settings--->$<---ciphertext--->
+
+Machine Settings
+~~~~~~~~~~~~~~~~
+The machine settings comprise the following values delimited by the ':'(colon) symbol
+
+Reflector - B (A B C b c)
+Reels(left to right) - 123 ( 1 2 3 4 5 6 7 8 b g)
+Ring Position(left to right) - ABC
+Start Position(left to right) - XYZ
+Plugboard Wiring - AB-CD-EF (optional)
+
+<-Reflector->:<-Reels->:<-Ring->:<-Start->:<-Plugboard->
+
+Reflector (mandatory value)
+~~~~~~~~~
+This value can be any one of the following - ABCbc
+Only a single reflector value is allowed.
+
+Reels (mandatory value)
+~~~~~
+This value must be 4 characters in length and comprise any combination of the following - 12345678bg
+
+If the the enigma being emulated only has 3 reels then you must precede the reel values with a '-' (dash) symbol
+
+e.g -123 (for a 3 wheel Enigma)
+    b123 (for a 4 wheel Enigma)
+
+Ring Position (mandatory value)
+~~~~~~~~~~~~~
+This value must be 4 characters in length and comprise any combination of the following - ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+If the the enigma being emulated only has 3 reels then you must precede the ring values with a '-' (dash) symbol
+
+e.g -ABC (for a 3 wheel Enigma)
+    ABCD (for a 4 wheel Enigma)
+
+
+Start Position (mandatory value)
+~~~~~~~~~~~~~
+This value must be 4 characters in length and comprise any combination of the following - ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+If the the enigma being emulated only has 3 reels then you must precede the start values with a '-' (dash) symbol
+
+e.g -ABC (for a 3 wheel Enigma)
+    ABCD (for a 4 wheel Enigma)
+
+
+Plugboard Wiring (mandatory value)
+This value emulates the Enigma plugboard where cables are used to map one letter to a different letter.
+
+Each map value is expressed as a letter pair
+e.g AB (maps the A character to the B character)
+
+multiple mappings must be separated with a '-'(dash) value
+e.g AB-CD-EF (maps A to B then C to D and finally E to F)
+
+If NO plugboard mapping is needed you must still represent an empty value within the Machine Settings values by
+entering 'AA' as the plugboard setting.
+
+Example Machine Settings
+~~~~~~~~~~~~~~~~~~~~~~~~
+Note: In the example below do not include any ciphertext but do include the '$'(dollar) delimiter.
+
+Example 1   B:-123:-ABC:-XYZ:AB-CD-EF$ (3 Rotor M3 Wehrmacht Enigma with 3 plug pair settings)
+Example 2   B:-123:-ABC:-XYZ:AA$(3 Rotor M3 Wehrmacht Enigma with no plug settings)
+Example 3   B:b123:AABC:AXYZ:AA$(4 Rotor M4 Navy Enigma with no plug settings)
+
+Ciphertext
+----------
+This value should comprise a stream of letters only. Numbers and symbols will be ignored and replaced with a
+whitespace. Any whitespaces included will be honored and passed to the output.
+
+Note: If you do include spaces in your ciphertext you must wrap the ciphertext with ("") quotes.
+
+Example 1   INPUTTEXT      ->    KDHUTSEBT
+Example 2   INPUT TEXT     ->    KDHUT
+Example 2   "INPUT TEXT"   ->    KDHUT SEBT
+Example 3   "IN5PUT T?EXT" ->    KD HUT S EBT
+
+COMMAND LINE EXAMPLES
+~~~~~~~~~~~~~~~~~~~~~
+
+Example 1   B:-123:-ABC:-XYZ:AB-CD-EF$BLELDVPPFW
+Output: CIPHERTEXT
+
+Example 2   B:-123:-ABC:-XYZ:AA$DWWQFPNZHMEE
+Output: ATTACKATDAWN
+
+Example 3   B:b123:AABC:AXYZ:AA$"QMXTMN VJ JCTX"
+Output: ATTACK AT DAWN
+
+If no command line arguments are given the program will default to the following internal example
+
+B:-368:-AHM:-UZV:AN-EZ-HK-IJ-LR-MQ-OT-PV-SW-UX$"KEPV MM E NCAS GDQYGYW"
+Output: THIS IS A TEST DECRYPT
