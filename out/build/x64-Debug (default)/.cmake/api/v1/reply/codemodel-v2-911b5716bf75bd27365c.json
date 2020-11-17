@@ -1,0 +1,55 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "EnigmaC__V2",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "EnigmaC__V2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-EnigmaC__V2-Debug-36ef17a0cce637c5a7c8.json",
+					"name" : "EnigmaC__V2",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/james/source/repos/jimbojetset/EnigmaC__V2/out/build/x64-Debug (default)",
+		"source" : "C:/Users/james/source/repos/jimbojetset/EnigmaC__V2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}

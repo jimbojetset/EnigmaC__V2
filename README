@@ -6,7 +6,7 @@ and which outputs the corresponding decoded plaintext.
 
 There is limited command line argument validation checking so please pay attention this README file.
 
-Command Line Parameter
+Command Line Parameter 
 ~~~~~~~~~~~~~~~~~~~~~~
 
 The machine settings are delimited from the ciphertext by the '$'(dollar) symbol
